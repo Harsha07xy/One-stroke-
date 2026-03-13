@@ -1,1 +1,804 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Privacy Policy — One Stroke</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg:        #08090d;
+      --surface:   #0f1118;
+      --border:    #1e2130;
+      --accent:    #8b5cf6;
+      --accent2:   #a78bfa;
+      --glow:      rgba(139,92,246,0.18);
+      --text:      #e8e9f0;
+      --muted:     #6b7280;
+      --safe:      #22c55e;
+      --warn:      #f59e0b;
+    }
 
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 16px;
+      line-height: 1.75;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ── Background grid ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 40px 40px;
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Glow blob ── */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -200px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 500px;
+      background: radial-gradient(ellipse, rgba(139,92,246,0.22) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── Layout wrapper ── */
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ── Header ── */
+    header {
+      position: relative;
+      z-index: 1;
+      padding: 64px 24px 40px;
+      text-align: center;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .logo-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 8px 20px;
+      margin-bottom: 32px;
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--accent2);
+    }
+
+    .logo-dot {
+      width: 8px; height: 8px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent);
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { opacity: 1; transform: scale(1); }
+      50%      { opacity: 0.5; transform: scale(0.75); }
+    }
+
+    header h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(2.2rem, 6vw, 3.8rem);
+      font-weight: 800;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      background: linear-gradient(135deg, #e8e9f0 30%, var(--accent2) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+    }
+
+    header p {
+      color: var(--muted);
+      font-size: 15px;
+      font-weight: 300;
+    }
+
+    /* ── Meta strip ── */
+    .meta-strip {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 32px 0 48px;
+      justify-content: center;
+    }
+
+    .meta-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-size: 13px;
+    }
+
+    .meta-chip .icon { font-size: 16px; }
+    .meta-chip .label { color: var(--muted); font-weight: 300; }
+    .meta-chip .value { color: var(--text); font-weight: 500; }
+
+    /* ── Summary cards row ── */
+    .summary-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .summary-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px 20px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .summary-card:hover {
+      border-color: var(--accent);
+      box-shadow: 0 0 24px var(--glow);
+    }
+
+    .summary-card .s-icon {
+      font-size: 26px;
+      margin-bottom: 10px;
+    }
+
+    .summary-card .s-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--accent2);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .summary-card .s-desc {
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* ── Section ── */
+    section {
+      margin-bottom: 40px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+
+    section:hover {
+      box-shadow: 0 0 32px var(--glow);
+    }
+
+    .sec-head {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 22px 28px;
+      border-bottom: 1px solid var(--border);
+      background: linear-gradient(135deg, rgba(139,92,246,0.05) 0%, transparent 100%);
+    }
+
+    .sec-num {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px; height: 32px;
+      background: var(--accent);
+      border-radius: 8px;
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 800;
+      color: #fff;
+      flex-shrink: 0;
+      box-shadow: 0 0 12px var(--glow);
+    }
+
+    .sec-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    .sec-body {
+      padding: 24px 28px;
+    }
+
+    .sec-body p {
+      color: #c4c7d4;
+      font-size: 15px;
+      margin-bottom: 14px;
+    }
+
+    .sec-body p:last-child { margin-bottom: 0; }
+
+    .sec-body ul, .sec-body ol {
+      padding-left: 20px;
+      margin-bottom: 14px;
+    }
+
+    .sec-body li {
+      color: #c4c7d4;
+      font-size: 15px;
+      margin-bottom: 8px;
+      padding-left: 4px;
+    }
+
+    .sec-body li::marker { color: var(--accent2); }
+
+    /* ── Highlight boxes ── */
+    .highlight {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      background: rgba(139,92,246,0.08);
+      border: 1px solid rgba(139,92,246,0.25);
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin: 16px 0;
+    }
+
+    .highlight.green {
+      background: rgba(34,197,94,0.08);
+      border-color: rgba(34,197,94,0.25);
+    }
+
+    .highlight.amber {
+      background: rgba(245,158,11,0.08);
+      border-color: rgba(245,158,11,0.25);
+    }
+
+    .highlight .h-icon { font-size: 20px; flex-shrink: 0; margin-top: 1px; }
+
+    .highlight .h-text {
+      font-size: 14px;
+      color: #c4c7d4;
+      line-height: 1.6;
+    }
+
+    .highlight .h-text strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    /* ── Tag pills ── */
+    .tag-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 14px; }
+
+    .tag {
+      display: inline-block;
+      background: rgba(139,92,246,0.12);
+      border: 1px solid rgba(139,92,246,0.3);
+      color: var(--accent2);
+      border-radius: 6px;
+      padding: 4px 12px;
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .tag.green {
+      background: rgba(34,197,94,0.1);
+      border-color: rgba(34,197,94,0.3);
+      color: #4ade80;
+    }
+
+    .tag.red {
+      background: rgba(239,68,68,0.1);
+      border-color: rgba(239,68,68,0.3);
+      color: #f87171;
+    }
+
+    /* ── Table ── */
+    .info-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 14px;
+      font-size: 14px;
+    }
+
+    .info-table th {
+      text-align: left;
+      padding: 10px 14px;
+      background: rgba(139,92,246,0.1);
+      color: var(--accent2);
+      font-family: 'Syne', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .info-table td {
+      padding: 10px 14px;
+      color: #c4c7d4;
+      border-bottom: 1px solid rgba(30,33,48,0.8);
+      vertical-align: top;
+    }
+
+    .info-table tr:last-child td { border-bottom: none; }
+    .info-table tr:hover td { background: rgba(139,92,246,0.04); }
+
+    /* ── Contact card ── */
+    .contact-card {
+      background: linear-gradient(135deg, rgba(139,92,246,0.12) 0%, rgba(139,92,246,0.04) 100%);
+      border: 1px solid rgba(139,92,246,0.3);
+      border-radius: 14px;
+      padding: 28px;
+      text-align: center;
+      margin-top: 40px;
+    }
+
+    .contact-card h3 {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .contact-card p {
+      color: var(--muted);
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+
+    .contact-card a {
+      display: inline-block;
+      background: var(--accent);
+      color: #fff;
+      font-family: 'Syne', sans-serif;
+      font-weight: 700;
+      font-size: 14px;
+      letter-spacing: 0.04em;
+      text-decoration: none;
+      padding: 12px 28px;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(139,92,246,0.4);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .contact-card a:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 32px rgba(139,92,246,0.6);
+    }
+
+    /* ── Footer ── */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 32px 24px 48px;
+      color: var(--muted);
+      font-size: 13px;
+      border-top: 1px solid var(--border);
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    footer strong { color: var(--accent2); }
+
+    /* ── Divider ── */
+    hr { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .sec-head { padding: 18px 20px; }
+      .sec-body { padding: 18px 20px; }
+      .summary-grid { grid-template-columns: 1fr 1fr; }
+      .meta-strip { gap: 8px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo-badge">
+      <span class="logo-dot"></span>
+      Privacy Policy
+    </div>
+    <h1>One Stroke</h1>
+    <p>Transparency about how we handle your data — simply and clearly.</p>
+  </header>
+
+  <div class="wrap">
+
+    <!-- META STRIP -->
+    <div class="meta-strip">
+      <div class="meta-chip">
+        <span class="icon">📦</span>
+        <span class="label">Package &nbsp;</span>
+        <span class="value">com.cs_boiii.one_stroke</span>
+      </div>
+      <div class="meta-chip">
+        <span class="icon">👤</span>
+        <span class="label">Developer &nbsp;</span>
+        <span class="value">CS Boiii</span>
+      </div>
+      <div class="meta-chip">
+        <span class="icon">📅</span>
+        <span class="label">Last Updated &nbsp;</span>
+        <span class="value">13 March 2026</span>
+      </div>
+    </div>
+
+    <!-- QUICK SUMMARY CARDS -->
+    <div class="summary-grid">
+      <div class="summary-card">
+        <div class="s-icon">🚫</div>
+        <div class="s-title">No Data Collected</div>
+        <div class="s-desc">We do not collect, store, or share any personal information about you.</div>
+      </div>
+      <div class="summary-card">
+        <div class="s-icon">🔑</div>
+        <div class="s-title">No Account Required</div>
+        <div class="s-desc">No sign-up, no login, no profile — just install and play instantly.</div>
+      </div>
+      <div class="summary-card">
+        <div class="s-icon">📢</div>
+        <div class="s-title">Ads Supported</div>
+        <div class="s-desc">Free to play with ads powered by Google AdMob. Third-party ad policies apply.</div>
+      </div>
+      <div class="summary-card">
+        <div class="s-icon">🔒</div>
+        <div class="s-title">Offline Capable</div>
+        <div class="s-desc">Core gameplay works offline. Your progress is stored locally on your device only.</div>
+      </div>
+    </div>
+
+    <!-- SECTION 1 -->
+    <section>
+      <div class="sec-head">
+        <div class="sec-num">1</div>
+        <div class="sec-title">Introduction</div>
+      </div>
+      <div class="sec-body">
+        <p>Welcome to <strong>One Stroke</strong>, a puzzle game developed by <strong>CS Boiii</strong>. This Privacy Policy explains how we handle information in connection with your use of the One Stroke mobile application ("App"), available on the Google Play Store.</p>
+        <p>By downloading or using the App, you agree to the practices described in this policy. If you do not agree, please discontinue use of the App.</p>
+        <div class="highlight green">
+          <span class="h-icon">✅</span>
+          <div class="h-text"><strong>Short version:</strong> We don't collect your personal data. The App is designed to work without any user accounts or personal information.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 2 -->
+    <section>
+      <div class="sec-head">
+        <div class="sec-num">2</div>
+        <div class="sec-title">Information We Do NOT Collect</div>
+      </div>
+      <div class="sec-body">
+        <p>One Stroke is built with a privacy-first approach. We do <strong>not</strong> collect, store, process, or transmit any of the following:</p>
+        <div class="tag-row">
+          <span class="tag red">❌ Name</span>
+          <span class="tag red">❌ Email Address</span>
+          <span class="tag red">❌ Phone Number</span>
+          <span class="tag red">❌ Location Data</span>
+          <span class="tag red">❌ Device Identifiers</span>
+          <span class="tag red">❌ Photos / Camera</span>
+          <span class="tag red">❌ Contacts</span>
+          <span class="tag red">❌ Microphone</span>
+          <span class="tag red">❌ Biometric Data</span>
+          <span class="tag red">❌ Payment Information</span>
+          <span class="tag red">❌ Usage Profiles</span>
+          <span class="tag red">❌ IP Address (by us)</span>
+        </div>
+        <p style="margin-top:18px;">There is no backend server operated by CS Boiii that receives or stores any information from your device.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 3 -->
+    <section>
+      <div class="sec-head">
+        <div class="sec-num">3</div>
+        <div class="sec-title">Data Stored Locally on Your Device</div>
+      </div>
+      <div class="sec-body">
+        <p>The App saves certain game data <strong>locally on your device only</strong> to provide a smooth experience. This data never leaves your device and is never accessible to us.</p>
+        <table class="info-table">
+          <thead>
+            <tr>
+              <th>Data Type</th>
+              <th>Purpose</th>
+              <th>Stored Where</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Level progress</td>
+              <td>Remember which levels you completed</td>
+              <td>Device local storage (Hive / SharedPreferences)</td>
+            </tr>
+            <tr>
+              <td>Streak count</td>
+              <td>Track your daily play streak</td>
+              <td>Device local storage</td>
+            </tr>
+            <tr>
+              <td>Badges earned</td>
+              <td>Display your achievements</td>
+              <td>Device local storage</td>
+            </tr>
+            <tr>
+              <td>Game settings</td>
+              <td>Sound on/off, preferences</td>
+              <td>Device local storage</td>
+            </tr>
+            <tr>
+              <td>Daily challenge state</td>
+              <td>Track daily challenge completion</td>
+              <td>Device local storage</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="highlight green">
+          <span class="h-icon">🔒</span>
+          <div class="h-text"><strong>100% Local:</strong> All the above data is stored exclusively on your device using standard Android local storage. Uninstalling the app will permanently delete all this data.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 4 -->
+    <section>
+      <div class="sec-head">
+        <div class="sec-num">4</div>
+        <div class="sec-title">Advertising — Google AdMob</div>
+      </div>
+      <div class="sec-body">
+        <p>One Stroke is a <strong>free-to-play</strong> game supported by advertisements served through <strong>Google AdMob</strong>. AdMob is a third-party advertising service operated by Google LLC.</p>
+        <p>The following types of ads may be displayed:</p>
+        <div class="tag-row">
+          <span class="tag">📺 Banner Ads</span>
+          <span class="tag">🎬 Interstitial Ads</span>
+          <span class="tag">🎁 Rewarded Ads</span>
+        </div>
+        <hr/>
+        <p><strong>What AdMob may collect independently:</strong></p>
+        <ul>
+          <li>Advertising ID (Google Advertising ID / GAID)</li>
+          <li>General device information (model, OS version)</li>
+          <li>General location (country/region level, not precise GPS)</li>
+          <li>Ad interaction data (impressions, clicks)</li>
+          <li>IP address (used for general location and fraud prevention)</li>
+        </ul>
+        <div class="highlight amber">
+          <span class="h-icon">⚠️</span>
+          <div class="h-text"><strong>Important:</strong> This data is collected directly by Google AdMob, not by CS Boiii. We have no access to this data. Please review Google's Privacy Policy for full details on how AdMob handles your information.</div>
+        </div>
+        <p>You can learn more and opt out of personalized advertising by visiting:</p>
+        <ul>
+          <li><a href="https://policies.google.com/privacy" target="_blank" style="color:var(--accent2);">Google Privacy Policy</a></li>
+          <li><a href="https://support.google.com/ads/answer/2662922" target="_blank" style="color:var(--accent2);">Google Ads Opt-Out</a></li>
+          <li>On your Android device: <strong>Settings → Privacy → Ads → Opt out of Ads Personalization</strong></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SECTION 5 -->
+    <section>
+      <div class="sec-head">
+        <div class="sec-num">5</div>
+        <div class="sec-title">No User Accounts or Registration</div>
+      </div>
+      <div class="sec-body">
+        <p>One Stroke requires <strong>no account creation, no sign-up, and no login</strong> of any kind. You can download and play the game immediately without providing any personal information whatsoever.</p>
+        <div class="tag-row">
+          <span class="tag green">✅ No Sign Up</span>
+          <span class="tag green">✅ No Login</span>
+          <span class="tag green">✅ No Email Required</span>
+          <span class="tag green">✅ No Social Login</span>
+          <span class="tag green">✅ No Profile Created</span>
+          <span class="tag green">✅ Anonymous Play</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 6 -->
+    <section>
+      <div class="sec-head">
+        <div class="sec-num">6</div>
+        <div class="sec-title">Permissions Used</div>
+      </div>
+      <div class="sec-body">
+        <p>One Stroke requests only the permissions necessary to function and display advertisements:</p>
+        <table class="info-table">
+          <thead>
+            <tr>
+              <th>Permission</th>
+              <th>Reason</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>INTERNET</td>
+              <td>Required to load and display ads from Google AdMob</td>
+            </tr>
+            <tr>
+              <td>ACCESS_NETWORK_STATE</td>
+              <td>Check connectivity status before loading ads</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="highlight green">
+          <span class="h-icon">✅</span>
+          <div class="h-text">We do <strong>not</strong> request access to your camera, microphone, contacts, location, storage, or any other sensitive permissions.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 7 -->
+    <section>
+      <div class="sec-head">
+        <div class="sec-num">7</div>
+        <div class="sec-title">Children's Privacy</div>
+      </div>
+      <div class="sec-body">
+        <p>One Stroke is a puzzle game intended for a <strong>general audience</strong>. It does not knowingly collect any personally identifiable information from children under the age of 13 (or the applicable age of digital consent in their country).</p>
+        <p>Since we do not collect personal data from any users, we inherently comply with COPPA (Children's Online Privacy Protection Act) and similar regulations.</p>
+        <p>Advertisements displayed in the app are served by Google AdMob. For family-specific settings and controls on ad targeting for children, please refer to Google's Family Policy resources.</p>
+        <div class="highlight">
+          <span class="h-icon">👨‍👩‍👧</span>
+          <div class="h-text">If you are a parent or guardian and believe your child has provided personal information through the App, please contact us immediately at <strong>help.teamharsha@gmail.com</strong> and we will take appropriate action.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 8 -->
+    <section>
+      <div class="sec-head">
+        <div class="sec-num">8</div>
+        <div class="sec-title">Third-Party Services</div>
+      </div>
+      <div class="sec-body">
+        <p>The App integrates the following third-party services. Each operates under its own privacy policy:</p>
+        <table class="info-table">
+          <thead>
+            <tr>
+              <th>Service</th>
+              <th>Provider</th>
+              <th>Purpose</th>
+              <th>Privacy Policy</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Google AdMob</td>
+              <td>Google LLC</td>
+              <td>Ad serving &amp; monetization</td>
+              <td><a href="https://policies.google.com/privacy" target="_blank" style="color:var(--accent2);">View Policy</a></td>
+            </tr>
+            <tr>
+              <td>Google Play Services</td>
+              <td>Google LLC</td>
+              <td>App distribution &amp; updates</td>
+              <td><a href="https://policies.google.com/privacy" target="_blank" style="color:var(--accent2);">View Policy</a></td>
+            </tr>
+          </tbody>
+        </table>
+        <p style="margin-top:14px;">CS Boiii is not responsible for the privacy practices of these third-party services. We encourage you to review their individual privacy policies.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 9 -->
+    <section>
+      <div class="sec-head">
+        <div class="sec-num">9</div>
+        <div class="sec-title">Data Security</div>
+      </div>
+      <div class="sec-body">
+        <p>Since One Stroke does not collect or transmit personal data to any server operated by us, the risk of a data breach from our end is eliminated by design.</p>
+        <p>All game data (progress, settings, streaks) is stored exclusively on your local device and protected by your device's own security mechanisms (screen lock, encryption, etc.).</p>
+        <div class="highlight green">
+          <span class="h-icon">🛡️</span>
+          <div class="h-text"><strong>Zero-server architecture:</strong> There is no CS Boiii server that stores your data. No server breach can ever expose your information to us, because we never receive it in the first place.</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 10 -->
+    <section>
+      <div class="sec-head">
+        <div class="sec-num">10</div>
+        <div class="sec-title">Your Rights &amp; Choices</div>
+      </div>
+      <div class="sec-body">
+        <p>Even though we don't collect personal data, you still have full control over your experience:</p>
+        <ul>
+          <li><strong>Delete local data:</strong> Uninstall the App to permanently remove all locally stored game data from your device.</li>
+          <li><strong>Ad preferences:</strong> Opt out of personalized ads via your Android device settings under <em>Settings → Privacy → Ads</em>.</li>
+          <li><strong>Reset Advertising ID:</strong> You can reset your Google Advertising ID at any time via Android Settings.</li>
+          <li><strong>Contact us:</strong> For any privacy-related questions or concerns, reach out to us at the contact details below.</li>
+        </ul>
+        <p>If you are located in the European Economic Area (EEA), United Kingdom, or California, you may have additional rights under GDPR, UK GDPR, or CCPA respectively. Since we do not process your personal data, most such rights are satisfied by default. For any specific requests, contact us.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 11 -->
+    <section>
+      <div class="sec-head">
+        <div class="sec-num">11</div>
+        <div class="sec-title">Changes to This Privacy Policy</div>
+      </div>
+      <div class="sec-body">
+        <p>We may update this Privacy Policy from time to time to reflect changes in our practices, applicable law, or third-party service integrations. When we make significant changes, we will:</p>
+        <ul>
+          <li>Update the <strong>"Last Updated"</strong> date at the top of this policy</li>
+          <li>Publish the updated policy at the same URL</li>
+          <li>If required, notify users through the App or Play Store listing</li>
+        </ul>
+        <p>We encourage you to review this policy periodically. Continued use of the App after any changes constitutes your acceptance of the updated policy.</p>
+      </div>
+    </section>
+
+    <!-- SECTION 12 -->
+    <section>
+      <div class="sec-head">
+        <div class="sec-num">12</div>
+        <div class="sec-title">Governing Law</div>
+      </div>
+      <div class="sec-body">
+        <p>This Privacy Policy is governed by and construed in accordance with the laws of <strong>India</strong>. Any disputes arising under this policy shall be subject to the exclusive jurisdiction of the courts of India.</p>
+        <p>For users in other jurisdictions, we comply with applicable local privacy laws to the best of our ability. If you have questions about how this policy applies in your region, please contact us.</p>
+      </div>
+    </section>
+
+    <!-- CONTACT CARD -->
+    <div class="contact-card">
+      <h3>Questions or Concerns?</h3>
+      <p>If you have any questions about this Privacy Policy or how your data is handled, our team is happy to help.</p>
+      <a href="mailto:help.teamharsha@gmail.com">📧 help.teamharsha@gmail.com</a>
+      <p style="margin-top:16px; font-size:13px; color:var(--muted);">
+        Developer: <strong style="color:var(--accent2);">CS Boiii</strong> &nbsp;·&nbsp; App: <strong style="color:var(--accent2);">One Stroke</strong> &nbsp;·&nbsp; Package: <strong style="color:var(--accent2);">com.cs_boiii.one_stroke</strong>
+      </p>
+    </div>
+
+  </div><!-- /wrap -->
+
+  <footer>
+    <p>© 2026 <strong>CS Boiii</strong>. All rights reserved.</p>
+    <p style="margin-top:6px;">One Stroke &nbsp;·&nbsp; Privacy Policy &nbsp;·&nbsp; Last Updated: 13 March 2026</p>
+  </footer>
+
+</body>
+</html>
