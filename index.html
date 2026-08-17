@@ -420,6 +420,24 @@
     /* ── Divider ── */
     hr { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
 
+    /* ── Badge for section 4b ── */
+    .network-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 10px;
+      margin: 14px 0;
+    }
+
+    .network-chip {
+      background: rgba(139,92,246,0.06);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 13px;
+      color: #c4c7d4;
+      text-align: center;
+    }
+
     /* ── Responsive ── */
     @media (max-width: 600px) {
       .sec-head { padding: 18px 20px; }
@@ -458,7 +476,7 @@
       <div class="meta-chip">
         <span class="icon">📅</span>
         <span class="label">Last Updated &nbsp;</span>
-        <span class="value">13 March 2026</span>
+        <span class="value">17 August 2026</span>
       </div>
     </div>
 
@@ -466,8 +484,8 @@
     <div class="summary-grid">
       <div class="summary-card">
         <div class="s-icon">🚫</div>
-        <div class="s-title">No Data Collected</div>
-        <div class="s-desc">We do not collect, store, or share any personal information about you.</div>
+        <div class="s-title">No Direct Collection</div>
+        <div class="s-desc">CS Boiii does not operate a server and does not directly collect your personal information.</div>
       </div>
       <div class="summary-card">
         <div class="s-icon">🔑</div>
@@ -476,8 +494,8 @@
       </div>
       <div class="summary-card">
         <div class="s-icon">📢</div>
-        <div class="s-title">Ads Supported</div>
-        <div class="s-desc">Free to play with ads powered by Google AdMob. Third-party ad policies apply.</div>
+        <div class="s-title">Ad Mediation</div>
+        <div class="s-desc">Ads are served via Google AdMob mediation, which may connect to multiple ad networks that collect data.</div>
       </div>
       <div class="summary-card">
         <div class="s-icon">🔒</div>
@@ -497,7 +515,7 @@
         <p>By downloading or using the App, you agree to the practices described in this policy. If you do not agree, please discontinue use of the App.</p>
         <div class="highlight green">
           <span class="h-icon">✅</span>
-          <div class="h-text"><strong>Short version:</strong> We don't collect your personal data. The App is designed to work without any user accounts or personal information.</div>
+          <div class="h-text"><strong>Short version:</strong> CS Boiii does not directly collect your personal data and has no backend server. However, the App uses Google AdMob mediation to display ads, and the ad networks involved in that mediation chain may collect certain data as described in Section 4.</div>
         </div>
       </div>
     </section>
@@ -509,22 +527,19 @@
         <div class="sec-title">Information We Do NOT Collect</div>
       </div>
       <div class="sec-body">
-        <p>One Stroke is built with a privacy-first approach. We do <strong>not</strong> collect, store, process, or transmit any of the following:</p>
+        <p>One Stroke is built with a privacy-first approach. CS Boiii does <strong>not</strong> directly collect, store, process, or transmit any of the following to any server we operate:</p>
         <div class="tag-row">
           <span class="tag red">❌ Name</span>
           <span class="tag red">❌ Email Address</span>
           <span class="tag red">❌ Phone Number</span>
-          <span class="tag red">❌ Location Data</span>
-          <span class="tag red">❌ Device Identifiers</span>
+          <span class="tag red">❌ Precise Location</span>
           <span class="tag red">❌ Photos / Camera</span>
           <span class="tag red">❌ Contacts</span>
           <span class="tag red">❌ Microphone</span>
           <span class="tag red">❌ Biometric Data</span>
           <span class="tag red">❌ Payment Information</span>
-          <span class="tag red">❌ Usage Profiles</span>
-          <span class="tag red">❌ IP Address (by us)</span>
         </div>
-        <p style="margin-top:18px;">There is no backend server operated by CS Boiii that receives or stores any information from your device.</p>
+        <p style="margin-top:18px;">There is no backend server operated by CS Boiii that receives or stores any personal information from your device. Some device and advertising identifiers may still be collected by third-party ad networks through our ad mediation setup — see Section 4 for full details.</p>
       </div>
     </section>
 
@@ -583,33 +598,50 @@
     <section>
       <div class="sec-head">
         <div class="sec-num">4</div>
-        <div class="sec-title">Advertising — Google AdMob</div>
+        <div class="sec-title">Advertising &amp; Data Collection via Ad Mediation</div>
       </div>
       <div class="sec-body">
-        <p>One Stroke is a <strong>free-to-play</strong> game supported by advertisements served through <strong>Google AdMob</strong>. AdMob is a third-party advertising service operated by Google LLC.</p>
-        <p>The following types of ads may be displayed:</p>
+        <p>One Stroke is a <strong>free-to-play</strong> game supported by advertisements. Ads are served through <strong>Google AdMob</strong>, using AdMob's <strong>mediation</strong> feature.</p>
+        <div class="highlight amber">
+          <span class="h-icon">ℹ️</span>
+          <div class="h-text"><strong>What is ad mediation?</strong> Instead of showing ads from only one source, AdMob mediation automatically requests ads from several different ad networks and picks whichever one pays the best or fills the request. This helps us keep the game free, but it also means more than one company can be involved in showing you an ad — and each of those companies may collect data independently, under their own privacy policy.</div>
+        </div>
+        <p>Depending on availability and region, the mediation chain used in One Stroke may include the following ad networks, in addition to AdMob itself:</p>
+        <div class="network-grid">
+          <div class="network-chip">Meta Audience Network</div>
+          <div class="network-chip">Unity Ads</div>
+          <div class="network-chip">AppLovin</div>
+          <div class="network-chip">ironSource / LevelPlay</div>
+          <div class="network-chip">Liftoff / Vungle</div>
+          <div class="network-chip">Pangle (TikTok for Business)</div>
+        </div>
+        <p><strong>Ad formats shown in the App:</strong></p>
         <div class="tag-row">
           <span class="tag">📺 Banner Ads</span>
           <span class="tag">🎬 Interstitial Ads</span>
           <span class="tag">🎁 Rewarded Ads</span>
         </div>
         <hr/>
-        <p><strong>What AdMob may collect independently:</strong></p>
+        <p><strong>What these ad networks may collect independently:</strong></p>
         <ul>
-          <li>Advertising ID (Google Advertising ID / GAID)</li>
-          <li>General device information (model, OS version)</li>
-          <li>General location (country/region level, not precise GPS)</li>
-          <li>Ad interaction data (impressions, clicks)</li>
-          <li>IP address (used for general location and fraud prevention)</li>
+          <li>Advertising ID (Google Advertising ID / GAID, or equivalent)</li>
+          <li>General device information (device model, OS version, language, screen size)</li>
+          <li>IP address (used for approximate location and fraud prevention)</li>
+          <li>General location at the country/region level (not precise GPS, unless a network requests separate location permission, which One Stroke does not grant)</li>
+          <li>Ad interaction data (impressions, clicks, view duration)</li>
+          <li>App usage signals used to personalize or measure ads (e.g. install and engagement events)</li>
         </ul>
         <div class="highlight amber">
           <span class="h-icon">⚠️</span>
-          <div class="h-text"><strong>Important:</strong> This data is collected directly by Google AdMob, not by CS Boiii. We have no access to this data. Please review Google's Privacy Policy for full details on how AdMob handles your information.</div>
+          <div class="h-text"><strong>Important:</strong> This data is collected directly by Google AdMob and its mediation partners listed above — <strong>not</strong> by CS Boiii. We do not operate a server, and we have no access to the raw data these networks collect. Each network processes it under its own privacy policy, which we encourage you to review.</div>
         </div>
-        <p>You can learn more and opt out of personalized advertising by visiting:</p>
+        <p>You can learn more and manage your ad preferences here:</p>
         <ul>
           <li><a href="https://policies.google.com/privacy" target="_blank" style="color:var(--accent2);">Google Privacy Policy</a></li>
           <li><a href="https://support.google.com/ads/answer/2662922" target="_blank" style="color:var(--accent2);">Google Ads Opt-Out</a></li>
+          <li><a href="https://www.facebook.com/privacy/policy/" target="_blank" style="color:var(--accent2);">Meta Privacy Policy</a></li>
+          <li><a href="https://unity.com/legal/privacy-policy" target="_blank" style="color:var(--accent2);">Unity Privacy Policy</a></li>
+          <li><a href="https://www.applovin.com/privacy/" target="_blank" style="color:var(--accent2);">AppLovin Privacy Policy</a></li>
           <li>On your Android device: <strong>Settings → Privacy → Ads → Opt out of Ads Personalization</strong></li>
         </ul>
       </div>
@@ -652,7 +684,7 @@
           <tbody>
             <tr>
               <td>INTERNET</td>
-              <td>Required to load and display ads from Google AdMob</td>
+              <td>Required to load and display ads from Google AdMob and its mediation partners</td>
             </tr>
             <tr>
               <td>ACCESS_NETWORK_STATE</td>
@@ -662,7 +694,7 @@
         </table>
         <div class="highlight green">
           <span class="h-icon">✅</span>
-          <div class="h-text">We do <strong>not</strong> request access to your camera, microphone, contacts, location, storage, or any other sensitive permissions.</div>
+          <div class="h-text">We do <strong>not</strong> request access to your camera, microphone, contacts, precise location, storage, or any other sensitive permissions.</div>
         </div>
       </div>
     </section>
@@ -674,12 +706,12 @@
         <div class="sec-title">Children's Privacy</div>
       </div>
       <div class="sec-body">
-        <p>One Stroke is a puzzle game intended for a <strong>general audience</strong>. It does not knowingly collect any personally identifiable information from children under the age of 13 (or the applicable age of digital consent in their country).</p>
-        <p>Since we do not collect personal data from any users, we inherently comply with COPPA (Children's Online Privacy Protection Act) and similar regulations.</p>
-        <p>Advertisements displayed in the app are served by Google AdMob. For family-specific settings and controls on ad targeting for children, please refer to Google's Family Policy resources.</p>
+        <p>One Stroke is a puzzle game intended for a <strong>general audience</strong>. CS Boiii does not knowingly collect any personally identifiable information from children under the age of 13 (or the applicable age of digital consent in their country).</p>
+        <p>Since CS Boiii does not directly collect personal data from any users, we inherently comply with COPPA (Children's Online Privacy Protection Act) and similar regulations to the extent within our control. Note that the ad mediation networks described in Section 4 may still collect limited technical/advertising data as part of serving ads.</p>
+        <p>For family-specific settings and controls on ad targeting for children, please refer to Google's Family Policy resources.</p>
         <div class="highlight">
           <span class="h-icon">👨‍👩‍👧</span>
-          <div class="h-text">If you are a parent or guardian and believe your child has provided personal information through the App, please contact us immediately at <strong>help.teamharsha@gmail.com</strong> and we will take appropriate action.</div>
+          <div class="h-text">If you are a parent or guardian and believe your child has provided personal information through the App, please contact us immediately at <strong>voidrise.games@gmail.com</strong> and we will take appropriate action.</div>
         </div>
       </div>
     </section>
@@ -703,8 +735,8 @@
           </thead>
           <tbody>
             <tr>
-              <td>Google AdMob</td>
-              <td>Google LLC</td>
+              <td>Google AdMob (+ Mediation)</td>
+              <td>Google LLC &amp; mediation partners</td>
               <td>Ad serving &amp; monetization</td>
               <td><a href="https://policies.google.com/privacy" target="_blank" style="color:var(--accent2);">View Policy</a></td>
             </tr>
@@ -716,7 +748,7 @@
             </tr>
           </tbody>
         </table>
-        <p style="margin-top:14px;">CS Boiii is not responsible for the privacy practices of these third-party services. We encourage you to review their individual privacy policies.</p>
+        <p style="margin-top:14px;">CS Boiii is not responsible for the privacy practices of these third-party services. We encourage you to review their individual privacy policies, listed in Section 4.</p>
       </div>
     </section>
 
@@ -727,8 +759,8 @@
         <div class="sec-title">Data Security</div>
       </div>
       <div class="sec-body">
-        <p>Since One Stroke does not collect or transmit personal data to any server operated by us, the risk of a data breach from our end is eliminated by design.</p>
-        <p>All game data (progress, settings, streaks) is stored exclusively on your local device and protected by your device's own security mechanisms (screen lock, encryption, etc.).</p>
+        <p>Since One Stroke does not directly collect or transmit personal data to any server operated by us, the risk of a data breach from our end is eliminated by design.</p>
+        <p>All game data (progress, settings, streaks) is stored exclusively on your local device and protected by your device's own security mechanisms (screen lock, encryption, etc.). Data collected by ad mediation networks is secured under each respective network's own security practices.</p>
         <div class="highlight green">
           <span class="h-icon">🛡️</span>
           <div class="h-text"><strong>Zero-server architecture:</strong> There is no CS Boiii server that stores your data. No server breach can ever expose your information to us, because we never receive it in the first place.</div>
@@ -743,14 +775,14 @@
         <div class="sec-title">Your Rights &amp; Choices</div>
       </div>
       <div class="sec-body">
-        <p>Even though we don't collect personal data, you still have full control over your experience:</p>
+        <p>Even though CS Boiii doesn't directly collect personal data, you still have full control over your experience:</p>
         <ul>
           <li><strong>Delete local data:</strong> Uninstall the App to permanently remove all locally stored game data from your device.</li>
           <li><strong>Ad preferences:</strong> Opt out of personalized ads via your Android device settings under <em>Settings → Privacy → Ads</em>.</li>
           <li><strong>Reset Advertising ID:</strong> You can reset your Google Advertising ID at any time via Android Settings.</li>
           <li><strong>Contact us:</strong> For any privacy-related questions or concerns, reach out to us at the contact details below.</li>
         </ul>
-        <p>If you are located in the European Economic Area (EEA), United Kingdom, or California, you may have additional rights under GDPR, UK GDPR, or CCPA respectively. Since we do not process your personal data, most such rights are satisfied by default. For any specific requests, contact us.</p>
+        <p>If you are located in the European Economic Area (EEA), United Kingdom, or California, you may have additional rights under GDPR, UK GDPR, or CCPA respectively. Since CS Boiii does not directly process your personal data, most such rights are satisfied by default; for data collected by ad mediation networks, you may also need to exercise your rights directly with those networks. For any specific requests, contact us.</p>
       </div>
     </section>
 
@@ -787,7 +819,7 @@
     <div class="contact-card">
       <h3>Questions or Concerns?</h3>
       <p>If you have any questions about this Privacy Policy or how your data is handled, our team is happy to help.</p>
-      <a href="mailto:help.teamharsha@gmail.com">📧 help.teamharsha@gmail.com</a>
+      <a href="mailto:voidrise.games@gmail.com">📧 voidrise.games@gmail.com</a>
       <p style="margin-top:16px; font-size:13px; color:var(--muted);">
         Developer: <strong style="color:var(--accent2);">CS Boiii</strong> &nbsp;·&nbsp; App: <strong style="color:var(--accent2);">One Stroke</strong> &nbsp;·&nbsp; Package: <strong style="color:var(--accent2);">com.cs_boiii.one_stroke</strong>
       </p>
@@ -797,7 +829,7 @@
 
   <footer>
     <p>© 2026 <strong>CS Boiii</strong>. All rights reserved.</p>
-    <p style="margin-top:6px;">One Stroke &nbsp;·&nbsp; Privacy Policy &nbsp;·&nbsp; Last Updated: 13 March 2026</p>
+    <p style="margin-top:6px;">One Stroke &nbsp;·&nbsp; Privacy Policy &nbsp;·&nbsp; Last Updated: 17 August 2026</p>
   </footer>
 
 </body>
